@@ -6,11 +6,28 @@ LabOJ 是一个在线评测系统，旨在为学生提供编程题目、代码�
 
 ## 技术栈
 
-- **前端**: Vue.js, Vue Router, Vuex
-- **样式**: CSS, SCSS (或使用框架，如 Bootstrap、Element Plus)
-- **状态管理**: Pinia 或 Vuex（如果使用 Vue 3）
+### 前端
+- **框架**: Vue.js 3
+- **路由**: Vue Router
+- **样式**: 
+  - CSS
+  - UI 框架（Bootstrap、Element Plus 或 Ant Design）
 - **HTTP 请求**: Axios
 - **构建工具**: Vite
+- **图标库**: Font Awesome 或 Element Icons
+- **数据可视化**: ECharts 或 Chart.js（如有需要）
+
+### 后端
+- **框架**: Django
+- **REST API**: Django REST framework
+- **数据库**: 
+  - MySQL
+  - SQLite（开发阶段可用）
+- **认证**: Token 认证
+- **消息队列**: Celery（如有需要）
+- **环境管理**: 
+  - Python Virtual Environment（venv）
+  - pip 或 poetry（依赖管理）
 
 ## 功能
 
