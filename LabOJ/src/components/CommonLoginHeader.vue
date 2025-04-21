@@ -4,16 +4,13 @@ import { RouterLink, RouterView } from 'vue-router'
 
 <template>
 	<div>
-		<!-- <header>
+		<header>
 			<nav class="navbar">
 				<RouterLink to="/">题库</RouterLink>
 				<RouterLink to="/about">About</RouterLink>
 				<RouterLink class="right" to="/login">登录</RouterLink>
 			</nav>
-		</header> -->
-		<main>
-			<RouterView />
-		</main>
+		</header>
 	</div>
 </template>
 
