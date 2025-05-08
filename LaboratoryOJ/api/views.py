@@ -1,9 +1,12 @@
 from django.db.models import Sum
 from rest_framework import generics, permissions
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
 from rest_framework.views import APIView
 from django.contrib.auth import authenticate
+
+from judge.docker_runner import run_code_in_docker
 from .models import Problem, Submission, User
 from .serializers import UserSerializer, ProblemSerializer, SubmissionSerializer
 
@@ -73,3 +76,20 @@ class LeaderboardView(generics.ListAPIView):
     def get_queryset(self):
         # 根据用户的总得分进行排序，生成排行榜
         return User.objects.annotate(total_score=Sum('submission__score')).order_by('-total_score')
+
+@api_view(["POST"])
+def judge_code(request):
+    code = request.data.get("code")
+    language = request.data.get("language")
+    input_data = request.data.get("input", "")
+    expected_output = request.data.get("expected_output", "").strip()
+
+    result = run_code_in_docker(language, code, input_data)
+    output = result["stdout"].strip()
+
+    # print(f"{output}({type(output)}) ==? {expected_output}({type(expected_output)})")
+
+    result["passed"] = (output == expected_output)
+    result["expected"] = expected_output
+    result["actual"] = output
+    return Response(result)

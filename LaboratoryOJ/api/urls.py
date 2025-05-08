@@ -1,5 +1,8 @@
 from django.urls import path
-from .views import RegisterView, LoginView, LogoutView, ProblemListView, ProblemDetailView, SubmissionCreateView, SubmissionDetailView, LeaderboardView
+
+from . import admin
+from .views import RegisterView, LoginView, LogoutView, ProblemListView, ProblemDetailView, SubmissionCreateView, \
+    SubmissionDetailView, LeaderboardView, judge_code
 
 urlpatterns = [
     path('auth/register/', RegisterView.as_view(), name='register'),
@@ -10,4 +13,5 @@ urlpatterns = [
     path('submissions/', SubmissionCreateView.as_view(), name='submission_create'),
     path('submissions/<int:pk>/', SubmissionDetailView.as_view(), name='submission_detail'),
     path('leaderboard/', LeaderboardView.as_view(), name='leaderboard'),
+    path("judge/", judge_code),
 ]
